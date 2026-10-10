@@ -4,207 +4,392 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Midlands Rescue Hub | Project Portfolio</title>
+<title>Midlands Rescue Hub | UML Architecture</title>
+
 <style>
 :root {
-  --green:#245c43;
-  --light-green:#e9f3ec;
-  --cream:#f8f8f3;
-  --dark:#17241d;
-  --gray:#66736b;
-  --border:#dfe7df;
-  --white:#ffffff;
+  --green: #245c43;
+  --light-green: #eaf4ed;
+  --gold: #f1c66d;
+  --dark: #203129;
+  --muted: #607067;
+  --background: #f7f9f6;
 }
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  margin:0;
-  font-family:Inter,Arial,sans-serif;
-  background:var(--cream);
-  color:var(--dark);
-  line-height:1.6;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--background);
+  color: var(--dark);
+  line-height: 1.6;
 }
-a { color:inherit; }
-.container { width:min(1080px,calc(100% - 40px)); margin:auto; }
-header {
-  background:rgba(248,248,243,.96);
-  border-bottom:1px solid var(--border);
+
+nav {
+  background: white;
+  padding: 18px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid #dce7de;
 }
-.nav {
-  min-height:76px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
+
 .brand {
-  display:flex;
-  align-items:center;
-  gap:11px;
-  font-weight:800;
-  font-size:16px;
+  color: var(--green);
+  font-weight: bold;
+  font-size: 1.2rem;
 }
-.logo {
-  display:grid;
-  place-items:center;
-  width:38px;
-  height:38px;
-  border-radius:12px;
-  background:var(--green);
-  color:white;
-  font-size:21px;
-}
-nav { display:flex; gap:24px; }
+
 nav a {
-  text-decoration:none;
-  color:var(--gray);
-  font-size:13px;
-  font-weight:600;
+  color: var(--green);
+  text-decoration: none;
+  font-weight: bold;
 }
-nav a:hover { color:var(--green); }
-.hero { padding:82px 0 74px; }
-.eyebrow {
-  color:var(--green);
-  text-transform:uppercase;
-  letter-spacing:2px;
-  font-size:11px;
-  font-weight:800;
+
+.hero {
+  background: linear-gradient(135deg, #245c43, #397957);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
 }
-.hero-grid {
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:50px;
-  align-items:center;
+
+.tag {
+  display: inline-block;
+  border: 1px solid #ffffff80;
+  border-radius: 30px;
+  padding: 5px 14px;
+  font-size: 0.9rem;
 }
-h1 {
-  font-size:clamp(42px,6vw,68px);
-  letter-spacing:-3px;
-  line-height:1.04;
-  margin:17px 0 22px;
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.15;
+  max-width: 850px;
+  margin: 20px auto;
 }
-h1 span { color:var(--green); }
+
+.hero p {
+  max-width: 750px;
+  margin: auto;
+  color: #edf5ef;
+  font-size: 1.1rem;
+}
+
+.button {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-top: 24px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 45px 22px;
+}
+
+h2 {
+  color: var(--green);
+  margin-top: 35px;
+}
+
 .intro {
-  max-width:620px;
-  color:var(--gray);
-  font-size:17px;
+  max-width: 800px;
+  color: var(--muted);
 }
-.buttons {
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:28px;
+
+.workflow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin: 25px 0 45px;
 }
-.btn {
-  display:inline-block;
-  text-decoration:none;
-  padding:12px 18px;
-  border-radius:9px;
-  font-size:13px;
-  font-weight:750;
+
+.step, .card {
+  background: white;
+  border: 1px solid #dce7de;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 4px 15px #2031290a;
 }
-.btn-primary { background:var(--green); color:white; }
-.btn-secondary { border:1px solid var(--border); background:white; }
-.hero-card {
-  background:var(--green);
-  color:white;
-  border-radius:20px;
-  padding:28px;
-  min-height:290px;
-  position:relative;
-  overflow:hidden;
+
+.number {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  background: var(--light-green);
+  color: var(--green);
+  border-radius: 50%;
+  font-weight: bold;
 }
-.hero-card:after {
-  content:"";
-  position:absolute;
-  width:220px;
-  height:220px;
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:50%;
-  right:-75px;
-  bottom:-85px;
-  box-shadow:0 0 0 25px rgba(255,255,255,.04),
-             0 0 0 50px rgba(255,255,255,.03);
+
+.step h3, .card h3 {
+  color: var(--green);
+  margin-bottom: 8px;
 }
-.hero-card .symbol { font-size:42px; margin-bottom:20px; }
-.hero-card h2 { font-size:25px; line-height:1.2; margin:0 0 12px; }
-.hero-card p { color:#e0eee4; font-size:14px; max-width:340px; }
-.hero-label {
-  display:inline-block;
-  border:1px solid rgba(255,255,255,.4);
-  border-radius:100px;
-  padding:6px 10px;
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:1px;
+
+.step p, .card p {
+  color: var(--muted);
+  font-size: 0.95rem;
 }
-section { padding:65px 0; }
-.section-title {
-  font-size:clamp(28px,4vw,39px);
-  line-height:1.15;
-  letter-spacing:-1.2px;
-  margin:9px 0 14px;
+
+.components {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin: 25px 0 40px;
 }
-.section-intro { color:var(--gray); max-width:650px; }
-.section-head { margin-bottom:30px; }
+
+.category {
+  display: inline-block;
+  background: var(--light-green);
+  color: var(--green);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: bold;
+}
+
+.note {
+  background: #fff7e3;
+  border-left: 4px solid var(--gold);
+  padding: 18px;
+  border-radius: 8px;
+  margin: 35px 0;
+}
+
+footer {
+  background: #193e2d;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 55px 20px;
+  }
+
+  nav {
+    padding: 16px 5%;
+  }
+}
 </style>
 </head>
+
 <body>
-<header>
-  <div class="container nav">
-    <div class="brand">
-      <div class="logo">✚</div>
-      <span>Midlands Rescue Hub</span>
-    </div>
-    <nav>
-      <a href="#about">Overview</a>
-      <a href="#design">System Design</a>
-      <a href="#workflow">Workflow</a>
-    </nav>
-  </div>
+
+<nav>
+  <div class="brand">🐾 Midlands Rescue Hub</div>
+  <a href="#architecture">Explore the Architecture ↓</a>
+</nav>
+
+<header class="hero">
+  <span class="tag">Software Design & UML Architecture</span>
+
+  <h1>Connecting Animals in Need With People Who Care.</h1>
+
+  <p>
+    Midlands Rescue Hub is a proposed platform designed to help
+    animal rescues, shelters, and veterinary clinics coordinate
+    assistance and connect animals with suitable fosters and volunteers.
+  </p>
+
+  <a class="button" href="#architecture">
+    Explore Our System Design
+  </a>
 </header>
 
 <main>
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <div class="eyebrow">Software design project · 2026</div>
-      <h1>Connecting animals with the <span>right foster.</span></h1>
-      <p class="intro">
-        Midlands Rescue Hub is a system design concept focused on helping
-        animal rescues, shelters, and veterinary organizations coordinate
-        urgent placement requests with suitable foster volunteers.
-      </p>
-      <div class="buttons">
-        <a class="btn btn-primary" href="#design">Explore the system</a>
-        <a class="btn btn-secondary" href="#about">About the project ↓</a>
-      </div>
-    </div>
-    <aside class="hero-card">
-      <div class="symbol">⌘</div>
-      <div class="hero-label">System architecture</div>
-      <h2>From urgent request to potential placement.</h2>
+
+<section>
+  <h2>About the Project</h2>
+
+  <p class="intro">
+    Animal rescue organizations often need to coordinate foster
+    placements, volunteers, and other resources quickly.
+    Midlands Rescue Hub is designed to organize animal information,
+    manage placement requests, identify potential volunteer matches,
+    and coordinate assistance through a structured software system.
+  </p>
+</section>
+
+<section id="architecture">
+  <h2>How the System Works</h2>
+
+  <p class="intro">
+    The UML design organizes the system into components that each
+    handle a specific responsibility.
+  </p>
+
+  <div class="workflow">
+
+    <div class="step">
+      <span class="number">1</span>
+      <h3>Animal</h3>
       <p>
-        A structured approach to volunteer matching, placement requests,
-        and coordinated outreach.
+        Stores information about an animal and its placement or
+        care needs.
       </p>
-    </aside>
+    </div>
+
+    <div class="step">
+      <span class="number">2</span>
+      <h3>Placement Request</h3>
+      <p>
+        Represents a request for assistance, such as finding
+        a foster or volunteer.
+      </p>
+    </div>
+
+    <div class="step">
+      <span class="number">3</span>
+      <h3>Matching Engine</h3>
+      <p>
+        Identifies potential helpers based on availability,
+        experience, and preferences.
+      </p>
+    </div>
+
+    <div class="step">
+      <span class="number">4</span>
+      <h3>Dispatch Service</h3>
+      <p>
+        Coordinates potential matches and the next steps
+        in the assistance process.
+      </p>
+    </div>
+
+    <div class="step">
+      <span class="number">5</span>
+      <h3>Organization</h3>
+      <p>
+        Represents the rescues, shelters, and clinics involved
+        in coordinating animal care.
+      </p>
+    </div>
+
   </div>
 </section>
 
-<section id="about">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">01 / Project overview</div>
-      <h2 class="section-title">A more organized way to coordinate rescue.</h2>
-      <p class="section-intro">
-        Finding a foster can involve several organizations, changing
-        availability, and different animal-care requirements. This concept
-        explores how software could help organize that process and identify
-        potential volunteer matches.
+<section>
+  <h2>UML System Components</h2>
+
+  <p class="intro">
+    Each component contributes to the proposed architecture
+    of Midlands Rescue Hub.
+  </p>
+
+  <div class="components">
+
+    <div class="card">
+      <span class="category">Data Model</span>
+      <h3>Animal</h3>
+      <p>
+        Represents animals and the information needed to understand
+        their care and placement requirements.
       </p>
     </div>
+
+    <div class="card">
+      <span class="category">Data Model</span>
+      <h3>Volunteer</h3>
+      <p>
+        Represents potential helpers, including their experience,
+        preferences, and availability.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="category">Matching</span>
+      <h3>MatchingEngine</h3>
+      <p>
+        Evaluates potential matches between assistance requests
+        and suitable volunteers.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="category">Workflow</span>
+      <h3>PlacementRequest</h3>
+      <p>
+        Represents a request for assistance with an animal
+        that needs support.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="category">Workflow</span>
+      <h3>DispatchService</h3>
+      <p>
+        Represents the coordination process for potential matches
+        and follow-up actions.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="category">Organizations</span>
+      <h3>Organization</h3>
+      <p>
+        Represents participating animal rescues, shelters,
+        veterinary clinics, and other groups.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="category">Data Handling</span>
+      <h3>DataLoader / DataWriter</h3>
+      <p>
+        Represent the planned responsibilities for loading
+        and saving system data.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="category">Collections</span>
+      <h3>RequestList / VolunteerList</h3>
+      <p>
+        Organize placement requests and volunteer records
+        for use by the system.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="category">Application Layer</span>
+      <h3>RescueHubFacade</h3>
+      <p>
+        Provides a central interface for coordinating
+        the system's main operations.
+      </p>
+    </div>
+
   </div>
 </section>
+
+<div class="note">
+  <strong>Project Status:</strong>
+  This website presents the project concept and intended UML
+  architecture. It is a design showcase, not a claim that all
+  components are connected to a live database or operational
+  animal rescue service.
+</div>
+
 </main>
+
+<footer>
+  <p><strong>Midlands Rescue Hub</strong></p>
+  <p>Technology designed to help animal rescue organizations work together.</p>
+</footer>
+
 </body>
 </html>
